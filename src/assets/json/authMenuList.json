@@ -1,0 +1,320 @@
+{
+  "success": true,
+  "code": 200,
+  "data": [
+    {
+      "id": 1,
+      "name": "home",
+      "path": "/home/index",
+      "component": "/home/index",
+      "parentId": null,
+      "meta": {
+        "title": "首页",
+        "link": null,
+        "order": null,
+        "icon": "HomeFilled"
+      },
+      "children": []
+    },
+    {
+      "id": 2,
+      "name": "stats",
+      "path": "/stats/index",
+      "component": "/stats/index",
+      "parentId": null,
+      "meta": {
+        "title": "数据统计",
+        "link": null,
+        "order": null,
+        "icon": "DataBoard"
+      },
+      "children": []
+    },
+    {
+      "id": 3,
+      "name": "user",
+      "path": "/user",
+      "component": null,
+      "parentId": null,
+      "meta": {
+        "title": "用户管理",
+        "link": null,
+        "order": null,
+        "icon": "User"
+      },
+      "children": [
+        {
+          "id": 4,
+          "name": "userList",
+          "path": "/user/userList",
+          "component": "/user/userList/index",
+          "parentId": 3,
+          "meta": {
+            "title": "用户列表",
+            "link": null,
+            "order": null,
+            "icon": "Menu"
+          },
+          "children": []
+        },
+        {
+          "id": 5,
+          "name": "userFeedback",
+          "path": "/user/userFeedback",
+          "component": "/user/userFeedback/index",
+          "parentId": 3,
+          "meta": {
+            "title": "用户反馈",
+            "link": null,
+            "order": null,
+            "icon": "Menu"
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "article",
+      "path": "/article",
+      "component": "",
+      "parentId": null,
+      "meta": {
+        "title": "文章管理",
+        "link": null,
+        "order": null,
+        "icon": "Document"
+      },
+      "children": [
+        {
+          "id": 7,
+          "name": "articleList",
+          "path": "/article/articleList",
+          "component": "/article/articleList/index",
+          "parentId": 6,
+          "meta": {
+            "title": "文章列表",
+            "link": null,
+            "order": null,
+            "icon": "Menu"
+          },
+          "children": []
+        },
+        {
+          "id": 8,
+          "name": "articleComment",
+          "path": "/article/articleComment",
+          "component": "/article/articleComment/index",
+          "parentId": 6,
+          "meta": {
+            "title": "文章评论",
+            "link": null,
+            "order": null,
+            "icon": "Menu"
+          },
+          "children": []
+        },
+        {
+          "id": 9,
+          "name": "articleLabel",
+          "path": "/article/articleLabel",
+          "component": "/article/articleLabel/index",
+          "parentId": 6,
+          "meta": {
+            "title": "文章标签",
+            "link": null,
+            "order": null,
+            "icon": "Menu"
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "moment",
+      "path": "/moment",
+      "component": null,
+      "parentId": null,
+      "meta": {
+        "title": "动态管理",
+        "link": null,
+        "order": null,
+        "icon": "MagicStick"
+      },
+      "children": [
+        {
+          "id": 11,
+          "name": "momentList",
+          "path": "/moment/momentList",
+          "component": "/moment/momentList/index",
+          "parentId": 10,
+          "meta": {
+            "title": "动态列表",
+            "link": null,
+            "order": null,
+            "icon": "Menu"
+          },
+          "children": []
+        },
+        {
+          "id": 12,
+          "name": "momentComment",
+          "path": "/moment/momentComment",
+          "component": "/moment/momentComment/index",
+          "parentId": 10,
+          "meta": {
+            "title": "动态评论",
+            "link": null,
+            "order": null,
+            "icon": "Menu"
+          },
+          "children": []
+        },
+        {
+          "id": 13,
+          "name": "momentLabel",
+          "path": "/moment/momentLabel",
+          "component": "/moment/momentLabel/index",
+          "parentId": 10,
+          "meta": {
+            "title": "动态标签",
+            "link": null,
+            "order": null,
+            "icon": "Menu"
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "name": "questionAnswer",
+      "path": "/questionAnswer",
+      "component": null,
+      "parentId": null,
+      "meta": {
+        "title": "问答管理",
+        "link": null,
+        "order": null,
+        "icon": "QuestionFilled"
+      },
+      "children": [
+        {
+          "id": 15,
+          "name": "questionAnswerList",
+          "path": "/questionAnswer/questionAnswerList",
+          "component": "/questionAnswer/questionAnswerList/index",
+          "parentId": 14,
+          "meta": {
+            "title": "问答列表",
+            "link": null,
+            "order": null,
+            "icon": "Menu"
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "name": "system",
+      "path": "/system",
+      "component": null,
+      "parentId": null,
+      "meta": {
+        "title": "系统管理",
+        "link": null,
+        "order": null,
+        "icon": "Tools"
+      },
+      "children": [
+        {
+          "id": 17,
+          "name": "role",
+          "path": "/system/role",
+          "component": "/system/role/index",
+          "parentId": 16,
+          "meta": {
+            "title": "角色管理",
+            "link": null,
+            "order": null,
+            "icon": "Menu"
+          },
+          "children": []
+        },
+        {
+          "id": 18,
+          "name": "permission",
+          "path": "/system/permission",
+          "component": "/system/permission/index",
+          "parentId": 16,
+          "meta": {
+            "title": "权限管理",
+            "link": null,
+            "order": null,
+            "icon": "Menu"
+          },
+          "children": []
+        },
+        {
+          "id": 19,
+          "name": "menu",
+          "path": "/system/menu",
+          "component": "/system/menu/index",
+          "parentId": 16,
+          "meta": {
+            "title": "菜单管理",
+            "link": null,
+            "order": null,
+            "icon": "Menu"
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "name": "link",
+      "path": "/link",
+      "component": null,
+      "parentId": null,
+      "meta": {
+        "title": "外部链接",
+        "link": null,
+        "order": null,
+        "icon": "Paperclip"
+      },
+      "children": [
+        {
+          "id": 21,
+          "name": "github",
+          "path": "/link/github",
+          "component": null,
+          "parentId": 20,
+          "meta": {
+            "title": "github",
+            "link": "https://github.com/zeng-jc",
+            "order": null,
+            "icon": "Menu"
+          },
+          "children": []
+        },
+        {
+          "id": 22,
+          "name": "juejin",
+          "path": "/link/juejin",
+          "component": null,
+          "parentId": 20,
+          "meta": {
+            "title": "掘金",
+            "link": "https://juejin.cn/user/1548551276737191",
+            "order": null,
+            "icon": "Menu"
+          },
+          "children": []
+        }
+      ]
+    }
+  ]
+}
