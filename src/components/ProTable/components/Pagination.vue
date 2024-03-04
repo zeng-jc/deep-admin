@@ -2,8 +2,8 @@
   <!-- 分页组件 -->
   <el-pagination
     :background="true"
-    :current-page="pageable.pageNum"
-    :page-size="pageable.pageSize"
+    :current-page="pageable.pagenum"
+    :page-size="pageable.pagesize"
     :page-sizes="[10, 25, 50, 100]"
     :total="pageable.total"
     layout="total, sizes, prev, pager, next, jumper"
@@ -14,8 +14,8 @@
 
 <script setup lang="ts" name="Pagination">
 interface Pageable {
-  pageNum: number;
-  pageSize: number;
+  pagenum: number;
+  pagesize: number;
   total: number;
 }
 

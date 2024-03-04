@@ -12,15 +12,15 @@ export interface ResultData<T = any> extends Result {
 // 分页响应参数
 export interface ResPage<T> {
   list: T[];
-  pageNum: number;
-  pageSize: number;
+  pagenum: number;
+  pagesize: number;
   total: number;
 }
 
 // 分页请求参数
 export interface ReqPage {
-  pageNum: number;
-  pageSize: number;
+  pagenum: number;
+  pagesize: number;
 }
 
 // 文件上传模块
@@ -72,22 +72,24 @@ export namespace User {
     photo: any[];
     children?: ResUserList[];
   }
-  export interface ResStatus {
-    userLabel: string;
-    userValue: number;
-  }
-  export interface ResGender {
-    genderLabel: string;
-    genderValue: number;
-  }
   export interface ResDepartment {
     id: string;
     name: string;
     children?: ResDepartment[];
   }
-  export interface ResRole {
+}
+
+// role 管理
+export namespace Role {
+  export interface ReqRoleParams {
+    name: string;
+  }
+  export interface ResRoleList {
     id: string;
     name: string;
-    children?: ResDepartment[];
+    status: number;
+    desc: string;
+    createAt: string;
+    permissions: [];
   }
 }

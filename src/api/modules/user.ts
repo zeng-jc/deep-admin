@@ -7,7 +7,7 @@ import http from "@/api";
  */
 // 获取用户列表
 export const getUserList = (params: User.ReqUserParams) => {
-  return http.post<ResPage<User.ResUserList>>(CMS_BASE_URL + `/user/list`, params);
+  return http.get<ResPage<User.ResUserList>>(CMS_BASE_URL + `/user/list`, params);
 };
 
 // 获取树形用户列表
@@ -50,22 +50,17 @@ export const exportUserInfo = (params: User.ReqUserParams) => {
   return http.download(CMS_BASE_URL + `/user/export`, params);
 };
 
-// 获取用户状态字典
-export const getUserStatus = () => {
-  return http.get<User.ResStatus[]>(CMS_BASE_URL + `/user/status`);
-};
+// // 获取用户状态字典
+// export const getUserStatus = () => {
+//   return http.get<User.ResStatus[]>(CMS_BASE_URL + `/user/status`);
+// };
 
-// 获取用户性别字典
-export const getUserGender = () => {
-  return http.get<User.ResGender[]>(CMS_BASE_URL + `/user/gender`);
-};
+// // 获取用户性别字典
+// export const getUserGender = () => {
+//   return http.get<User.ResGender[]>(CMS_BASE_URL + `/user/gender`);
+// };
 
 // 获取用户部门列表
 export const getUserDepartment = () => {
   return http.get<User.ResDepartment[]>(CMS_BASE_URL + `/user/department`, {}, { cancel: false });
-};
-
-// 获取用户角色字典
-export const getUserRole = () => {
-  return http.get<User.ResRole[]>(CMS_BASE_URL + `/user/role`);
 };
