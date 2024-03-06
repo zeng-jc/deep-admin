@@ -59,3 +59,27 @@ export interface AuthState {
 export interface KeepAliveState {
   keepAliveName: string[];
 }
+
+export interface StatsState {
+  user: {
+    total: number;
+    todayCount: number;
+  };
+  moment: {
+    total: number;
+    commentCount: number;
+    likesCount: number;
+    viewsCount: number;
+  };
+  article: {
+    total: number;
+    commentCount: number;
+    likesCount: number;
+    viewsCount: number;
+  };
+  visits: {
+    today: number;
+    yesterday: number;
+    total: number;
+  };
+}

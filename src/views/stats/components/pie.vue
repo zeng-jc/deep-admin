@@ -1,21 +1,31 @@
 <template>
   <div class="echarts">
-    <ECharts :option="option" />
+    <ECharts :option="option" v-if="isRender" />
   </div>
 </template>
 
 <script setup lang="ts" name="pie">
 import { ECOption } from "@/components/ECharts/config";
 import ECharts from "@/components/ECharts/index.vue";
-
+import { useStatsStore } from "@/stores/modules/stats";
+import { storeToRefs } from "pinia";
+import { watch, ref } from "vue";
+const statsStore = useStatsStore();
+const { moment, article } = storeToRefs(statsStore);
+const isRender = ref(false);
+watch(moment, () => {
+  isRender.value = true;
+  pieData[0].value = moment.value.total;
+  pieData[1].value = article.value.total;
+});
 const pieData = [
-  { value: 5000, name: "Gitee 访问量" },
-  { value: 5000, name: "GitHub 访问量" }
+  { value: moment.value.total, name: "动态数量" },
+  { value: article.value.total, name: "文章数量" }
 ];
 
 const option: ECOption = {
   title: {
-    text: "Gitee / GitHub",
+    text: "动态 / 文章",
     subtext: "访问占比",
     left: "56%",
     top: "45%",
