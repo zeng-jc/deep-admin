@@ -1,7 +1,7 @@
 // 请求响应参数（不包含data）
 export interface Result {
   code: string;
-  msg: string;
+  message: string;
 }
 
 // 请求响应参数（包含data）
@@ -91,5 +91,31 @@ export namespace Role {
     desc: string;
     createAt: string;
     permissions: [];
+  }
+}
+
+export namespace Stats {
+  export interface ResStats {
+    user: {
+      total: number;
+      todayCount: number;
+    };
+    moment: {
+      total: number;
+      commentCount: number;
+      likesCount: number;
+      viewsCount: number;
+    };
+    article: {
+      total: number;
+      commentCount: number;
+      likesCount: number;
+      viewsCount: number;
+    };
+    visits: {
+      today: number;
+      yesterday: number;
+      total: number;
+    };
   }
 }
