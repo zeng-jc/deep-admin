@@ -47,7 +47,7 @@
           </el-col>
           <el-col class="mb40" :xs="24" :sm="24" :md="24" :lg="10" :xl="10">
             <div class="item-right">
-              <div class="echarts-title">文章 / 动态 发布量占比</div>
+              <div class="echarts-title">动态 / 文章 / 问题 发布量占比</div>
               <div class="book-echarts">
                 <Pie ref="pieRef" />
               </div>
