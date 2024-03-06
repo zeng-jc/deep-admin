@@ -28,7 +28,7 @@ const pieData = [
 const option: ECOption = {
   title: {
     text: "动态/文章/问题",
-    subtext: "访问占比",
+    subtext: "数量占比",
     left: "56%",
     top: "45%",
     textAlign: "center",
