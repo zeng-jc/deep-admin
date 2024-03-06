@@ -117,5 +117,8 @@ export namespace Stats {
       yesterday: number;
       total: number;
     };
+    questionAnswer: {
+      questionTotal: number;
+    };
   }
 }

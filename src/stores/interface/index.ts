@@ -82,4 +82,7 @@ export interface StatsState {
     yesterday: number;
     total: number;
   };
+  questionAnswer: {
+    questionTotal: number;
+  };
 }

@@ -11,21 +11,23 @@ import { useStatsStore } from "@/stores/modules/stats";
 import { storeToRefs } from "pinia";
 import { watch, ref } from "vue";
 const statsStore = useStatsStore();
-const { moment, article } = storeToRefs(statsStore);
+const { moment, article, questionAnswer } = storeToRefs(statsStore);
 const isRender = ref(false);
 watch(moment, () => {
   isRender.value = true;
   pieData[0].value = moment.value.total;
   pieData[1].value = article.value.total;
+  pieData[2].value = questionAnswer.value.questionTotal;
 });
 const pieData = [
   { value: moment.value.total, name: "动态数量" },
-  { value: article.value.total, name: "文章数量" }
+  { value: article.value.total, name: "文章数量" },
+  { value: questionAnswer.value.questionTotal, name: "问题数量" }
 ];
 
 const option: ECOption = {
   title: {
-    text: "动态 / 文章",
+    text: "动态/文章/问题",
     subtext: "访问占比",
     left: "56%",
     top: "45%",
@@ -124,6 +126,23 @@ const option: ECOption = {
             {
               offset: 1,
               color: "#8347fd" // 100% 处的颜色
+            }
+          ]
+        },
+        {
+          type: "linear",
+          x: 0,
+          y: 0,
+          x2: 0.5,
+          y2: 1,
+          colorStops: [
+            {
+              offset: 0,
+              color: "#8bdcff" // 0% 处的颜色
+            },
+            {
+              offset: 1,
+              color: "#43bdff" // 100% 处的颜色
             }
           ]
         }

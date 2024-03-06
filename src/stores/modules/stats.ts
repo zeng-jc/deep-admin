@@ -25,6 +25,9 @@ export const useStatsStore = defineStore({
       today: 0,
       yesterday: 0,
       total: 0
+    },
+    questionAnswer: {
+      questionTotal: 0
     }
   }),
   getters: {},
@@ -35,6 +38,7 @@ export const useStatsStore = defineStore({
       this.moment = data.moment;
       this.article = data.article;
       this.visits = data.visits;
+      this.questionAnswer = data.questionAnswer;
       return data;
     }
   }
