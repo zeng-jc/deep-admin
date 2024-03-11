@@ -1,10 +1,10 @@
 // 获取菜单列表
-import { CMS_BASE_URL } from "@/api/config/servicePort";
+import { AUTH_BASE_URL } from "@/api/config/servicePort";
 import authButtonList from "@/assets/json/authButtonList.json";
 import http from "@/api";
 
 export const getAuthMenuListApi = () => {
-  return http.get<Menu.MenuOptions[]>(CMS_BASE_URL + "/menu", {}, { loading: false });
+  return http.post<Menu.MenuOptions[]>(AUTH_BASE_URL + "/auth/menu", {}, { loading: false });
   // 如果想让菜单变为本地数据，注释上一行代码，并引入本地 authMenuList.json 数据
 };
 

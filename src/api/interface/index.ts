@@ -72,11 +72,6 @@ export namespace User {
     photo: any[];
     children?: ResUserList[];
   }
-  export interface ResDepartment {
-    id: string;
-    name: string;
-    children?: ResDepartment[];
-  }
 }
 
 // role 管理

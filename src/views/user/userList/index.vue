@@ -11,7 +11,6 @@
       <!-- 表格 header 按钮 -->
       <template #tableHeader="scope">
         <el-button v-auth="'add'" type="primary" :icon="CirclePlus" @click="openDrawer('新增')">新增用户</el-button>
-        <el-button v-auth="'batchAdd'" type="primary" :icon="Upload" plain @click="batchAdd">批量添加用户</el-button>
         <el-button v-auth="'export'" type="primary" :icon="Download" plain @click="downloadFile">导出用户数据</el-button>
         <el-button type="danger" :icon="Delete" plain :disabled="!scope.isSelected" @click="batchDelete(scope.selectedListIds)">
           批量删除用户
@@ -40,8 +39,8 @@ import { ElMessage, ElMessageBox } from "element-plus";
 import ProTable from "@/components/ProTable/index.vue";
 import ImportExcel from "@/components/ImportExcel/index.vue";
 import UserDrawer from "@/views/user/components/UserDrawer.vue";
-import { ProTableInstance, ColumnProps, HeaderRenderScope } from "@/components/ProTable/interface";
-import { CirclePlus, Delete, EditPen, Download, Upload, View, Refresh } from "@element-plus/icons-vue";
+import { ProTableInstance, ColumnProps } from "@/components/ProTable/interface";
+import { CirclePlus, Delete, EditPen, Download, View, Refresh } from "@element-plus/icons-vue";
 import {
   getUserList,
   deleteUser,
@@ -49,8 +48,7 @@ import {
   addUser,
   changeUserStatus,
   resetUserPassWord,
-  exportUserInfo,
-  BatchAddUser
+  exportUserInfo
 } from "@/api/modules/user";
 import { genderType, userStatus } from "@/utils/dict";
 import dayjs from "dayjs";
@@ -87,15 +85,6 @@ const getTableList = (params: any) => {
 // 页面按钮权限（按钮权限既可以使用 hooks，也可以直接使用 v-auth 指令，指令适合直接绑定在按钮上，hooks 适合根据按钮权限显示不同的内容）
 const { BUTTONS } = useAuthButtons();
 
-// 自定义渲染表头（使用tsx语法）
-const headerRender = (scope: HeaderRenderScope<User.ResUserList>) => {
-  return (
-    <el-button type="primary" onClick={() => ElMessage.success("我是通过 tsx 语法渲染的表头")}>
-      {scope.column.label}
-    </el-button>
-  );
-};
-
 // 表格配置项
 const columns = reactive<ColumnProps<User.ResUserList>[]>([
   { type: "selection", fixed: "left", width: 70 },
@@ -122,10 +111,26 @@ const columns = reactive<ColumnProps<User.ResUserList>[]>([
     fieldNames: { label: "label", value: "value" }
   },
   {
+    prop: "bio",
+    label: "主页介绍"
+  },
+  {
     prop: "birthday",
-    label: "年龄"
+    label: "出生日期"
   },
   { prop: "email", label: "邮箱" },
+  {
+    prop: "createAt",
+    label: "创建时间",
+    width: 180,
+    render: scope => {
+      return dayjs(scope.row.createTime).format("YYYY-MM-DD HH:mm:ss");
+    }
+  },
+  { prop: "phone", label: "电话" },
+  { prop: "school", label: "学校" },
+  { prop: "major", label: "专业" },
+  { prop: "position", label: "位置" },
   {
     prop: "status",
     label: "用户状态",
@@ -149,17 +154,6 @@ const columns = reactive<ColumnProps<User.ResUserList>[]>([
       );
     }
   },
-  {
-    prop: "createAt",
-    label: "创建时间",
-    headerRender,
-    width: 180,
-    render: scope => {
-      return dayjs(scope.row.createTime).format("YYYY-MM-DD HH:mm:ss");
-    }
-  },
-  { prop: "phone", label: "电话" },
-  { prop: "school", label: "学校" },
   { prop: "operation", label: "操作", fixed: "right", width: 330 }
 ]);
 
@@ -200,18 +194,6 @@ const downloadFile = async () => {
   ElMessageBox.confirm("确认导出用户数据?", "温馨提示", { type: "warning" }).then(() =>
     useDownload(exportUserInfo, "用户列表", proTable.value?.searchParam)
   );
-};
-
-// 批量添加用户
-const dialogRef = ref<InstanceType<typeof ImportExcel> | null>(null);
-const batchAdd = () => {
-  const params = {
-    title: "用户",
-    tempApi: exportUserInfo,
-    importApi: BatchAddUser,
-    getTableList: proTable.value?.getTableList
-  };
-  dialogRef.value?.acceptParams(params);
 };
 
 // 打开 drawer(新增、查看、编辑)
