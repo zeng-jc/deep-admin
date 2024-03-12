@@ -22,7 +22,7 @@ export const editUser = (params: { id: string }) => {
 
 // 删除用户
 export const deleteUser = id => {
-  return http.post(CMS_BASE_URL + `/user/delete/${id}`);
+  return http.delete(CMS_BASE_URL + `/user/delete/${id}`);
 };
 
 // 切换用户状态
