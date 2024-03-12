@@ -51,7 +51,7 @@
 import { ref, computed, inject } from "vue";
 import { generateUUID } from "@/utils";
 // import { uploadImg } from "@/api/modules/upload";
-const uploadImg = "";
+const uploadImg = () => Promise<any>;
 import { ElNotification, formContextKey, formItemContextKey } from "element-plus";
 import type { UploadProps, UploadRequestOptions } from "element-plus";
 

@@ -1,11 +1,11 @@
 {
-  "name": "geeker-admin",
+  "name": "deep-admin",
   "private": true,
   "version": "1.2.0",
   "type": "module",
-  "description": "geeker-admin open source management system",
+  "description": "deep-admin open source management system",
   "author": {
-    "name": "Geeker",
+    "name": "deep",
     "email": "848130454@qq.com",
     "url": "https://github.com/HalseySpicy"
   },

@@ -16,8 +16,8 @@ export const addUser = (params: { id: string }) => {
 };
 
 // 编辑用户
-export const editUser = (id, params: { id: string }) => {
-  return http.patch(CMS_BASE_URL + `/user/update/${id}`, params);
+export const editUser = (params: { id: string }) => {
+  return http.patch(CMS_BASE_URL + `/user/update/${params.id}`, params);
 };
 
 // 删除用户

@@ -11,7 +11,7 @@
       <!-- 表格 header 按钮 -->
       <template #tableHeader="scope">
         <el-button v-auth="'add'" type="primary" :icon="CirclePlus" @click="openDrawer('新增')">新增用户</el-button>
-        <el-button v-auth="'export'" type="primary" :icon="Download" plain @click="downloadFile">导出用户数据</el-button>
+        <el-button v-auth="'export'" type="primary" :icon="Download" plain>导出用户数据</el-button>
         <el-button type="danger" :icon="Delete" plain :disabled="!scope.isSelected" @click="batchDelete(scope.selectedListIds)">
           批量删除用户
         </el-button>
@@ -33,23 +33,14 @@
 import { ref, reactive } from "vue";
 import { User } from "@/api/interface";
 import { useHandleData } from "@/hooks/useHandleData";
-import { useDownload } from "@/hooks/useDownload";
 import { useAuthButtons } from "@/hooks/useAuthButtons";
-import { ElMessage, ElMessageBox } from "element-plus";
+import { ElMessage } from "element-plus";
 import ProTable from "@/components/ProTable/index.vue";
 import ImportExcel from "@/components/ImportExcel/index.vue";
 import UserDrawer from "@/views/user/components/UserDrawer.vue";
 import { ProTableInstance, ColumnProps } from "@/components/ProTable/interface";
 import { CirclePlus, Delete, EditPen, Download, View, Refresh } from "@element-plus/icons-vue";
-import {
-  getUserList,
-  deleteUser,
-  editUser,
-  addUser,
-  changeUserStatus,
-  resetUserPassWord,
-  exportUserInfo
-} from "@/api/modules/user";
+import { getUserList, deleteUser, editUser, addUser, changeUserStatus, resetUserPassWord } from "@/api/modules/user";
 import { genderType, userStatus } from "@/utils/dict";
 import dayjs from "dayjs";
 
@@ -74,9 +65,9 @@ const dataCallback = (data: any) => {
 // 默认不做操作就直接在 ProTable 组件上绑定	:requestApi="getUserList"
 const getTableList = (params: any) => {
   let newParams = JSON.parse(JSON.stringify(params));
-  newParams.createTime && (newParams.startTime = newParams.createTime[0]);
-  newParams.createTime && (newParams.endTime = newParams.createTime[1]);
-  delete newParams.createTime;
+  newParams.createAt && (newParams.startTime = newParams.createAt[0]);
+  newParams.createAt && (newParams.endTime = newParams.createAt[1]);
+  delete newParams.createAt;
   newParams.pagenum = 1;
   newParams.pagesize = 10;
   return getUserList(newParams);
@@ -124,7 +115,7 @@ const columns = reactive<ColumnProps<User.ResUserList>[]>([
     label: "创建时间",
     width: 180,
     render: scope => {
-      return dayjs(scope.row.createTime).format("YYYY-MM-DD HH:mm:ss");
+      return dayjs(scope.row.createAt).format("YYYY-MM-DD HH:mm:ss");
     }
   },
   { prop: "phone", label: "电话" },
@@ -188,16 +179,6 @@ const changeStatus = async (row: User.ResUserList) => {
   await useHandleData(changeUserStatus, { id: row.id, status: row.status == 1 ? 0 : 1 }, `切换【${row.username}】用户状态`);
   proTable.value?.getTableList();
 };
-
-// 导出用户列表
-const downloadFile = async () => {
-  ElMessageBox.confirm("确认导出用户数据?", "温馨提示", { type: "warning" }).then(() =>
-    useDownload(exportUserInfo, "用户列表", proTable.value?.searchParam)
-  );
-};
-
-// 打开 drawer(新增、查看、编辑)
-const drawerRef = ref<InstanceType<typeof UserDrawer> | null>(null);
 const openDrawer = (title: string, row: Partial<User.ResUserList> = {}) => {
   const params = {
     title,

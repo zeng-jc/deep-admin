@@ -50,27 +50,43 @@ export namespace Login {
 // 用户管理模块
 export namespace User {
   export interface ReqUserParams extends ReqPage {
+    id: number;
     username: string;
+    avatar: string;
+    nickname: string;
     gender: number;
-    idCard: string;
     email: string;
-    address: string;
-    createTime: string[];
     status: number;
+    bio: string;
+    level: number;
+    birthday: string;
+    phone: string;
+    school: string;
+    major: string;
+    position: null;
+    github: string;
+    createAt: string;
+    updateAt: string;
   }
   export interface ResUserList {
-    id: string;
+    id: number;
     username: string;
-    gender: number;
-    user: { detail: { age: number } };
-    idCard: string;
-    email: string;
-    address: string;
-    createTime: string;
-    status: number;
     avatar: string;
-    photo: any[];
-    children?: ResUserList[];
+    nickname: string;
+    gender: number;
+    email: string;
+    status: number;
+    bio: string;
+    level: number;
+    birthday: string;
+    phone: string;
+    school: string;
+    major: string;
+    position: null;
+    github: string;
+    createAt: string;
+    updateAt: string;
+    roles: object[];
   }
 }
 

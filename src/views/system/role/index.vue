@@ -1,9 +1,7 @@
 <template>
-  <div>
+  <div class="table-box">
     <h2>role</h2>
   </div>
 </template>
 
-<script setup lang="ts"></script>
-
-<style scoped lang="scss"></style>
+<script setup lang="tsx" name="useProTable"></script>
