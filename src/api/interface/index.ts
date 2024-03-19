@@ -65,8 +65,8 @@ export namespace User {
     major: string;
     position: null;
     github: string;
-    createAt: string;
-    updateAt: string;
+    createTime: string;
+    updateTime: string;
   }
   export interface ResUserList {
     id: number;
@@ -84,8 +84,8 @@ export namespace User {
     major: string;
     position: null;
     github: string;
-    createAt: string;
-    updateAt: string;
+    createTime: string;
+    updateTime: string;
     roles: object[];
   }
 }
@@ -100,7 +100,7 @@ export namespace Role {
     name: string;
     status: number;
     desc: string;
-    createAt: string;
+    createTime: string;
     permissions: [];
   }
 }

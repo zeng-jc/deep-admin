@@ -65,9 +65,9 @@ const dataCallback = (data: any) => {
 // 默认不做操作就直接在 ProTable 组件上绑定	:requestApi="getUserList"
 const getTableList = (params: any) => {
   let newParams = JSON.parse(JSON.stringify(params));
-  newParams.createAt && (newParams.startTime = newParams.createAt[0]);
-  newParams.createAt && (newParams.endTime = newParams.createAt[1]);
-  delete newParams.createAt;
+  newParams.createTime && (newParams.startTime = newParams.createTime[0]);
+  newParams.createTime && (newParams.endTime = newParams.createTime[1]);
+  delete newParams.createTime;
   newParams.pagenum = 1;
   newParams.pagesize = 10;
   return getUserList(newParams);
@@ -111,11 +111,11 @@ const columns = reactive<ColumnProps<User.ResUserList>[]>([
   },
   { prop: "email", label: "邮箱" },
   {
-    prop: "createAt",
+    prop: "createTime",
     label: "创建时间",
     width: 180,
     render: scope => {
-      return dayjs(scope.row.createAt).format("YYYY-MM-DD HH:mm:ss");
+      return dayjs(scope.row.createTime).format("YYYY-MM-DD HH:mm:ss");
     }
   },
   { prop: "phone", label: "电话" },
