@@ -17,7 +17,7 @@ export const addUser = (params: { id: string }) => {
 
 // 编辑用户
 export const editUser = (params: { id: string }) => {
-  return http.patch(CMS_BASE_URL + `/user/update/${params.id}`, params);
+  return http.patch(CMS_BASE_URL + `/user/update`, params);
 };
 
 // 删除用户
@@ -33,9 +33,4 @@ export const changeUserStatus = (params: { id: string; status: number }) => {
 // 导出用户数据
 export const exportUserInfo = (params: User.ReqUserParams) => {
   return http.download(CMS_BASE_URL + `/user/export`, params);
-};
-
-// 重置用户密码
-export const resetUserPassWord = (params: { id: string }) => {
-  return http.post(CMS_BASE_URL + `/user/rest_password`, params);
 };

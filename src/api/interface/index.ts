@@ -74,6 +74,7 @@ export namespace User {
     avatar: string;
     nickname: string;
     gender: number;
+    password?: string;
     email: string;
     status: number;
     bio: string;

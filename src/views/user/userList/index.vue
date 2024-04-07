@@ -11,7 +11,7 @@
       <!-- 表格 header 按钮 -->
       <template #tableHeader="scope">
         <el-button v-auth="'add'" type="primary" :icon="CirclePlus" @click="openDrawer('新增')">新增用户</el-button>
-        <el-button v-auth="'export'" type="primary" :icon="Download" plain>导出用户数据</el-button>
+        <!-- <el-button v-auth="'export'" type="primary" :icon="Download" plain>导出用户数据</el-button> -->
         <el-button type="danger" :icon="Delete" plain :disabled="!scope.isSelected" @click="batchDelete(scope.selectedListIds)">
           批量删除用户
         </el-button>
@@ -34,13 +34,13 @@ import { ref, reactive } from "vue";
 import { User } from "@/api/interface";
 import { useHandleData } from "@/hooks/useHandleData";
 import { useAuthButtons } from "@/hooks/useAuthButtons";
-import { ElMessage } from "element-plus";
+import { ElMessage, ElMessageBox } from "element-plus";
 import ProTable from "@/components/ProTable/index.vue";
 import ImportExcel from "@/components/ImportExcel/index.vue";
 import UserDrawer from "@/views/user/components/UserDrawer.vue";
 import { ProTableInstance, ColumnProps } from "@/components/ProTable/interface";
-import { CirclePlus, Delete, EditPen, Download, View, Refresh } from "@element-plus/icons-vue";
-import { getUserList, deleteUser, editUser, addUser, changeUserStatus, resetUserPassWord } from "@/api/modules/user";
+import { CirclePlus, Delete, EditPen, View, Refresh } from "@element-plus/icons-vue";
+import { getUserList, deleteUser, editUser, addUser, changeUserStatus } from "@/api/modules/user";
 import { genderType, userStatus } from "@/utils/dict";
 import dayjs from "dayjs";
 
@@ -162,15 +162,26 @@ const deleteAccount = async (params: User.ResUserList) => {
 };
 
 // 批量删除用户信息
-const batchDelete = async (id: string[]) => {
-  await useHandleData(deleteUser, { id }, "删除所选用户信息");
+const batchDelete = async (ids: string[]) => {
+  console.log(ids);
+  await useHandleData(deleteUser, 1, "删除所选用户信息");
   proTable.value?.clearSelection();
   proTable.value?.getTableList();
 };
 
 // 重置用户密码
 const resetPass = async (params: User.ResUserList) => {
-  await useHandleData(resetUserPassWord, { id: params.id }, `重置【${params.username}】用户密码`);
+  // await useHandleData(resetUserPassWord, { id: params.id }, `重置【${params.username}】用户密码`);
+  ElMessageBox.confirm(`是否${params.username}?`, "温馨提示", {
+    confirmButtonText: "确定",
+    cancelButtonText: "取消",
+    draggable: true
+  }).then(async () => {
+    ElMessage({
+      type: "success",
+      message: `${params.username}重置成功!`
+    });
+  });
   proTable.value?.getTableList();
 };
 
