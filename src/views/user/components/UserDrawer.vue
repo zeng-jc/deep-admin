@@ -33,7 +33,7 @@
         <el-input v-model="drawerProps.row!.username" placeholder="主页id" clearable></el-input>
       </el-form-item>
       <el-form-item label="用户密码" prop="password">
-        <el-input v-model="drawerProps.row!.password" placeholder="用户用户密码" clearable></el-input>
+        <el-input v-model="drawerProps.row!.password" placeholder="用户密码" clearable></el-input>
       </el-form-item>
       <el-form-item label="用户等级" prop="level">
         <el-input v-model="drawerProps.row!.level" placeholder="用户等级" clearable></el-input>

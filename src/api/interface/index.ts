@@ -50,23 +50,8 @@ export namespace Login {
 // 用户管理模块
 export namespace User {
   export interface ReqUserParams extends ReqPage {
-    id: number;
-    username: string;
-    avatar: string;
-    nickname: string;
     gender: number;
-    email: string;
-    status: number;
-    bio: string;
-    level: number;
-    birthday: string;
-    phone: string;
-    school: string;
-    major: string;
-    position: null;
-    github: string;
-    createTime: string;
-    updateTime: string;
+    username: string;
   }
   export interface ResUserList {
     id: number;
@@ -132,5 +117,23 @@ export namespace Stats {
     questionAnswer: {
       questionTotal: number;
     };
+  }
+}
+
+export namespace Article {
+  export interface ReqArticleParams extends ReqPage {
+    id: number;
+    title: string;
+  }
+  export interface ResArticleList {
+    id: number;
+    title: string;
+    viewCount: number;
+    content: string;
+    status: number;
+    cover: string;
+    createTime: string;
+    updateTime: string;
+    labels: string[];
   }
 }

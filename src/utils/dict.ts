@@ -16,3 +16,11 @@ export const userStatus = [
   { label: "启用", value: 1, tagType: "success" },
   { label: "禁用", value: 0, tagType: "danger" }
 ];
+
+/**
+ * @description：文章状态
+ */
+export const articleStatus = [
+  { label: "启用", value: 1, tagType: "success" },
+  { label: "禁用", value: 0, tagType: "danger" }
+];
