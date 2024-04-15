@@ -17,5 +17,5 @@ export const deleteArticleComment = id => {
 
 // 切换文章评论点赞
 export const changeArticleCommentStatus = (params: { id: string; status: number }) => {
-  return http.post(CMS_BASE_URL + `/article-comment/toggle-likes`, params);
+  return http.post(CMS_BASE_URL + `/article-comment/toggle-likes/${params.id}`, params);
 };

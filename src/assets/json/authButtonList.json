@@ -1,8 +1,14 @@
 {
   "code": 200,
   "data": {
-    "userList": ["add", "batchAdd", "export", "batchDelete", "status"],
-    "articleList": ["add", "batchAdd", "export", "batchDelete", "status"],
+    "userList": ["add", "delete", "batchAdd", "export", "batchDelete", "status"],
+    "articleList": ["add", "delete", "batchAdd", "export", "batchDelete", "status"],
+    "articleComment": ["add", "delete", "batchAdd", "export", "batchDelete", "status"],
+    "articleLabel": ["add", "delete", "batchAdd", "export", "batchDelete", "status"],
+    "momentList": ["add", "delete", "batchAdd", "export", "batchDelete", "status"],
+    "momentComment": ["add", "delete", "batchAdd", "export", "batchDelete", "status"],
+    "momentLabel": ["add", "delete", "batchAdd", "export", "batchDelete", "status"],
+    "questionAnswer": ["add", "delete", "batchAdd", "export", "batchDelete", "status"],
     "authButton": ["add", "edit", "delete", "import", "export"]
   },
   "msg": "成功"

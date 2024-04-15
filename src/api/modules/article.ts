@@ -34,3 +34,18 @@ export const changeArticleStatus = (params: { id: string; status: number }) => {
 export const exportArticleInfo = (params: Article.ReqArticleParams) => {
   return http.download(CMS_BASE_URL + `/article/export`, params);
 };
+
+// 标签列表
+export const getArticleLabelList = (params: Article.ReqArticleParams) => {
+  return http.get<ResPage<Article.ResArticleList>>(CMS_BASE_URL + `/article/label/list`, params);
+};
+
+// 删除标签标签
+export const deleteArticleLabel = id => {
+  return http.delete(CMS_BASE_URL + `/article/label/delete/${id}`);
+};
+
+// 新增标签
+export const addArticleLabel = (params: { id: string }) => {
+  return http.post(CMS_BASE_URL + `/article/label/create`, params);
+};

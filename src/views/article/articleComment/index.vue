@@ -10,9 +10,14 @@
     >
       <!-- 表格 header 按钮 -->
       <template #tableHeader="scope">
-        <el-button v-auth="'add'" type="primary" :icon="CirclePlus" @click="openDrawer('新增')">新增评论</el-button>
-        <!-- <el-button v-auth="'export'" type="primary" :icon="Download" plain>导出评论数据</el-button> -->
-        <el-button type="danger" :icon="Delete" plain :disabled="!scope.isSelected" @click="batchDelete(scope.selectedListIds)">
+        <el-button
+          type="danger"
+          v-auth="'batchDelete'"
+          :icon="Delete"
+          plain
+          :disabled="!scope.isSelected"
+          @click="batchDelete(scope.selectedListIds)"
+        >
           批量删除评论
         </el-button>
       </template>
@@ -30,15 +35,13 @@
 import { ref, reactive } from "vue";
 import { ArticleComment } from "@/api/interface";
 import { useHandleData } from "@/hooks/useHandleData";
-import { useAuthButtons } from "@/hooks/useAuthButtons";
 import { ElMessage } from "element-plus";
 import ProTable from "@/components/ProTable/index.vue";
 import ImportExcel from "@/components/ImportExcel/index.vue";
 import ArticleDrawer from "@/views/article/components/ArticleDrawer.vue";
 import { ProTableInstance, ColumnProps } from "@/components/ProTable/interface";
-import { CirclePlus, Delete } from "@element-plus/icons-vue";
-import { getArticleCommentList, deleteArticleComment, changeArticleCommentStatus } from "@/api/modules/articleComment";
-import { articleStatus } from "@/utils/dict";
+import { Delete } from "@element-plus/icons-vue";
+import { getArticleCommentList, deleteArticleComment } from "@/api/modules/articleComment";
 import dayjs from "dayjs";
 
 // ProTable 实例
@@ -69,9 +72,6 @@ const getTableList = (params: any) => {
   newParams.pagesize = 10;
   return getArticleCommentList(newParams);
 };
-
-// 页面按钮权限（按钮权限既可以使用 hooks，也可以直接使用 v-auth 指令，指令适合直接绑定在按钮上，hooks 适合根据按钮权限显示不同的内容）
-const { BUTTONS } = useAuthButtons();
 
 // 表格配置项
 const columns = reactive<ColumnProps<ArticleComment.ResArticleCommentList>[]>([
@@ -106,37 +106,13 @@ const columns = reactive<ColumnProps<ArticleComment.ResArticleCommentList>[]>([
   { prop: "replyId", label: "评论回复Id", width: 120 },
   { prop: "likes", label: "评论点赞量", width: 120 },
   {
-    prop: "status",
-    label: "评论状态",
-    enum: articleStatus,
-    fieldNames: { label: "label", value: "status" },
-    render: scope => {
-      console.log("BUTTONS.value.status", BUTTONS.value.status);
-      return (
-        <>
-          {BUTTONS.value.status ? (
-            <el-switch
-              model-value={scope.row.status}
-              active-text={scope.row.status ? "启用" : "禁用"}
-              active-value={1}
-              inactive-value={0}
-              onClick={() => changeStatus(scope.row)}
-            />
-          ) : (
-            <el-tag type={scope.row.status ? "success" : "danger"}>{scope.row.status ? "启用" : "禁用"}</el-tag>
-          )}
-        </>
-      );
-    }
-  },
-  {
     prop: "createTime",
     label: "创建时间",
     render: scope => {
       return dayjs(scope.row.createTime).format("YYYY-MM-DD HH:mm:ss");
     }
   },
-  { prop: "operation", label: "操作", fixed: "right", width: 330 }
+  { prop: "operation", label: "操作", fixed: "right", width: 150 }
 ]);
 
 // 表格拖拽排序
@@ -160,14 +136,5 @@ const batchDelete = async (ids: string[]) => {
   proTable.value?.getTableList();
 };
 
-// 切换评论状态
-const changeStatus = async (row: ArticleComment.ResArticleCommentList) => {
-  await useHandleData(
-    changeArticleCommentStatus,
-    { id: row.id, status: row.status == 1 ? 0 : 1 },
-    `切换【${row.title}】评论状态`
-  );
-  proTable.value?.getTableList();
-};
 const drawerRef = ref<InstanceType<typeof ArticleDrawer> | null>(null);
 </script>

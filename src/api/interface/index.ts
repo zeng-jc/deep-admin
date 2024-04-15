@@ -161,3 +161,21 @@ export namespace ArticleComment {
     };
   }
 }
+
+export namespace ArticleLabel {
+  export interface ReqArticleLabelParams extends ReqPage {
+    id: number;
+    title: string;
+  }
+  export interface ResArticleLabelList {
+    id: number;
+    name: string;
+    userId: number;
+    createTime: string;
+    user: {
+      id: number;
+      username: string;
+      nickname: string;
+    };
+  }
+}
