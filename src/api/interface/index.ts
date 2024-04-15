@@ -137,3 +137,27 @@ export namespace Article {
     labels: string[];
   }
 }
+
+export namespace ArticleComment {
+  export interface ReqArticleCommentParams extends ReqPage {
+    id: number;
+    content: string;
+  }
+  export interface ResArticleCommentList {
+    id: number;
+    articleId: number;
+    userId: number;
+    replyId: number;
+    path: string;
+    content: string;
+    status: number;
+    likes: null;
+    createTime: string;
+    article: {
+      title: string;
+    };
+    user: {
+      username: string;
+    };
+  }
+}

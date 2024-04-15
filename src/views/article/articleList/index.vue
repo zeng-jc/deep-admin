@@ -19,7 +19,7 @@
       <!-- 表格操作 -->
       <template #operation="scope">
         <el-button type="primary" link :icon="View" @click="openDrawer('查看', scope.row)">查看</el-button>
-        <el-button type="primary" link :icon="EditPen" @click="openDrawer('编辑', scope.row)">编辑</el-button>
+        <!-- <el-button type="primary" link :icon="EditPen" @click="openDrawer('编辑', scope.row)">编辑</el-button> -->
         <el-button type="primary" link :icon="Delete" @click="deleteAccount(scope.row)">删除</el-button>
       </template>
     </ProTable>
@@ -38,7 +38,7 @@ import ProTable from "@/components/ProTable/index.vue";
 import ImportExcel from "@/components/ImportExcel/index.vue";
 import ArticleDrawer from "@/views/article/components/ArticleDrawer.vue";
 import { ProTableInstance, ColumnProps } from "@/components/ProTable/interface";
-import { CirclePlus, Delete, EditPen, View } from "@element-plus/icons-vue";
+import { CirclePlus, Delete, View } from "@element-plus/icons-vue";
 import { getArticleList, deleteArticle, editArticle, addArticle, changeArticleStatus } from "@/api/modules/article";
 import { articleStatus } from "@/utils/dict";
 import dayjs from "dayjs";
@@ -89,11 +89,20 @@ const columns = reactive<ColumnProps<Article.ResArticleList>[]>([
     label: "封面",
     width: 100,
     render: ({ row }) => {
+      const slots = {
+        error: () => <div></div>
+      };
       return (
         <>
-          <el-image style="width: 60px" z-index={50} src={row.cover} max-scale={7} min-scale={0.2} preview-src-list={[row.cover]}>
-            <template slot="viewer"></template>
-          </el-image>
+          <el-image
+            style="width: 60px"
+            z-index={50}
+            src={row.cover}
+            max-scale={7}
+            min-scale={0.2}
+            preview-src-list={[row.cover]}
+            v-slots={slots}
+          ></el-image>
         </>
       );
     }

@@ -42,10 +42,10 @@
         <el-input v-model="drawerProps.row!.status" placeholder="文章状态" clearable></el-input>
       </el-form-item>
       <el-form-item label="注册时间" prop="createTime">
-        <el-input v-model="drawerProps.row!.createTime" placeholder="用户注册时间" clearable></el-input>
+        <el-input v-model="drawerProps.row!.createTime" placeholder="文章注册时间" clearable></el-input>
       </el-form-item>
       <el-form-item label="更新时间" prop="updateTime">
-        <el-input v-model="drawerProps.row!.updateTime" placeholder="用户更新时间" clearable></el-input>
+        <el-input v-model="drawerProps.row!.updateTime" placeholder="文章更新时间" clearable></el-input>
       </el-form-item>
     </el-form>
     <template #footer>
