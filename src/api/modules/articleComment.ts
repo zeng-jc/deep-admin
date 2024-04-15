@@ -3,7 +3,7 @@ import { CMS_BASE_URL } from "@/api/config/servicePort";
 import http from "@/api";
 
 /**
- * @name 文章管理模块
+ * @name 文章评论管理模块
  */
 // 获取文章评论列表
 export const getArticleCommentList = (params: ArticleComment.ReqArticleCommentParams) => {

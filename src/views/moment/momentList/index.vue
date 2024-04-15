@@ -86,7 +86,7 @@ const { BUTTONS } = useAuthButtons();
 const columns = reactive<ColumnProps<Moment.ResMomentList>[]>([
   { type: "selection", fixed: "left", width: 70 },
   { type: "sort", label: "Sort", width: 80 },
-  { prop: "content", label: "动态内容" },
+  { prop: "content", label: "动态内容", search: { el: "input", tooltip: "请输入动态内容" } },
   { prop: "username", label: "动态发布人", render: ({ row }) => <div>{row.user.username}</div> },
   {
     prop: "images",
