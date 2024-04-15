@@ -179,3 +179,60 @@ export namespace ArticleLabel {
     };
   }
 }
+
+export namespace Moment {
+  export interface ReqMomentParams extends ReqPage {
+    id: number;
+  }
+  export interface ResMomentList {
+    id: number;
+    images: string[];
+    viewCount: number;
+    content: string;
+    status: number;
+    createTime: string;
+    updateTime: string;
+    labels: string[];
+  }
+}
+
+export namespace MomentComment {
+  export interface ReqMomentCommentParams extends ReqPage {
+    id: number;
+    content: string;
+  }
+  export interface ResMomentCommentList {
+    id: number;
+    articleId: number;
+    userId: number;
+    replyId: number;
+    path: string;
+    content: string;
+    status: number;
+    likes: null;
+    createTime: string;
+    article: {
+      title: string;
+    };
+    user: {
+      username: string;
+    };
+  }
+}
+
+export namespace MomentLabel {
+  export interface ReqMomentLabelParams extends ReqPage {
+    id: number;
+  }
+  export interface ResMomentLabelList {
+    id: number;
+    name: string;
+    userId: number;
+    createTime: string;
+    user: {
+      id: number;
+      username: string;
+      nickname: string;
+    };
+  }
+}
