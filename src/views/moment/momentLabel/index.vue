@@ -9,13 +9,15 @@
       @darg-sort="sortTable"
     >
       <!-- 表格 header 按钮 -->
-      <template #tableHeader="scope">
+      <template #tableHeader>
         <el-button v-auth="'add'" type="primary" :icon="CirclePlus" @click="openDrawer('新增')">新增标签</el-button>
-        <!-- <el-button v-auth="'export'" type="primary" :icon="Download" plain>导出标签数据</el-button> -->
+      </template>
+      <!-- <template #tableHeader="scope">
+        <el-button v-auth="'add'" type="primary" :icon="CirclePlus" @click="openDrawer('新增')">新增标签</el-button>
         <el-button type="danger" :icon="Delete" plain :disabled="!scope.isSelected" @click="batchDelete(scope.selectedListIds)">
           批量删除标签
         </el-button>
-      </template>
+      </template> -->
       <!-- 表格操作 -->
       <template #operation="scope">
         <el-button type="primary" link :icon="Delete" @click="deleteAccount(scope.row)">删除</el-button>
@@ -103,12 +105,12 @@ const deleteAccount = async (params: Moment.ResMomentList) => {
 };
 
 // 批量删除标签信息
-const batchDelete = async (ids: string[]) => {
-  console.log(ids);
-  await useHandleData(deleteMomentLabel, 1, "删除所选标签信息");
-  proTable.value?.clearSelection();
-  proTable.value?.getTableList();
-};
+// const batchDelete = async (ids: string[]) => {
+//   console.log(ids);
+//   await useHandleData(deleteMomentLabel, 1, "删除所选标签信息");
+//   proTable.value?.clearSelection();
+//   proTable.value?.getTableList();
+// };
 
 const drawerRef = ref<InstanceType<typeof MomentLabelDrawer> | null>(null);
 const openDrawer = (title: string, row: Partial<Moment.ResMomentList> = {}) => {

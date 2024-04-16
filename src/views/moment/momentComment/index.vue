@@ -9,7 +9,7 @@
       @darg-sort="sortTable"
     >
       <!-- 表格 header 按钮 -->
-      <template #tableHeader="scope">
+      <!-- <template #tableHeader="scope">
         <el-button
           type="danger"
           v-auth="'batchDelete'"
@@ -20,7 +20,7 @@
         >
           批量删除评论
         </el-button>
-      </template>
+      </template> -->
       <!-- 表格操作 -->
       <template #operation="scope">
         <el-button type="primary" link :icon="Delete" @click="deleteAccount(scope.row)">删除</el-button>
@@ -123,12 +123,12 @@ const deleteAccount = async (params: MomentComment.ResMomentCommentList) => {
 };
 
 // 批量删除评论信息
-const batchDelete = async (ids: string[]) => {
-  console.log(ids);
-  await useHandleData(deleteMomentComment, 1, "删除所选评论信息");
-  proTable.value?.clearSelection();
-  proTable.value?.getTableList();
-};
+// const batchDelete = async (ids: string[]) => {
+//   console.log(ids);
+//   await useHandleData(deleteMomentComment, 1, "删除所选评论信息");
+//   proTable.value?.clearSelection();
+//   proTable.value?.getTableList();
+// };
 
 const drawerRef = ref<InstanceType<typeof MomentDrawer> | null>(null);
 </script>

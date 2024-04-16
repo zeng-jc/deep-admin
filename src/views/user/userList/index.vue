@@ -9,12 +9,8 @@
       @darg-sort="sortTable"
     >
       <!-- 表格 header 按钮 -->
-      <template #tableHeader="scope">
+      <template #tableHeader>
         <el-button v-auth="'add'" type="primary" :icon="CirclePlus" @click="openDrawer('新增')">新增用户</el-button>
-        <!-- <el-button v-auth="'export'" type="primary" :icon="Download" plain>导出用户数据</el-button> -->
-        <el-button type="danger" :icon="Delete" plain :disabled="!scope.isSelected" @click="batchDelete(scope.selectedListIds)">
-          批量删除用户
-        </el-button>
       </template>
       <!-- 表格操作 -->
       <template #operation="scope">
@@ -162,12 +158,12 @@ const deleteAccount = async (params: User.ResUserList) => {
 };
 
 // 批量删除用户信息
-const batchDelete = async (ids: string[]) => {
-  console.log(ids);
-  await useHandleData(deleteUser, 1, "删除所选用户信息");
-  proTable.value?.clearSelection();
-  proTable.value?.getTableList();
-};
+// const batchDelete = async (ids: string[]) => {
+//   console.log(ids);
+//   await useHandleData(deleteUser, 1, "删除所选用户信息");
+//   proTable.value?.clearSelection();
+//   proTable.value?.getTableList();
+// };
 
 // 重置用户密码
 const resetPass = async (params: User.ResUserList) => {

@@ -9,13 +9,15 @@
       @darg-sort="sortTable"
     >
       <!-- 表格 header 按钮 -->
-      <template #tableHeader="scope">
+      <template #tableHeader>
         <el-button v-auth="'add'" type="primary" :icon="CirclePlus" @click="openDrawer('新增')">新增标签</el-button>
-        <!-- <el-button v-auth="'export'" type="primary" :icon="Download" plain>导出标签数据</el-button> -->
+      </template>
+      <!-- <template #tableHeader="scope">
+        <el-button v-auth="'add'" type="primary" :icon="CirclePlus" @click="openDrawer('新增')">新增标签</el-button>
         <el-button type="danger" :icon="Delete" plain :disabled="!scope.isSelected" @click="batchDelete(scope.selectedListIds)">
           批量删除标签
         </el-button>
-      </template>
+      </template> -->
       <!-- 表格操作 -->
       <template #operation="scope">
         <el-button type="primary" link :icon="Delete" @click="deleteAccount(scope.row)">删除</el-button>
@@ -35,7 +37,7 @@ import ProTable from "@/components/ProTable/index.vue";
 import ImportExcel from "@/components/ImportExcel/index.vue";
 import ArticleLabelDrawer from "@/views/article/components/ArticleLabelDrawer.vue";
 import { ProTableInstance, ColumnProps } from "@/components/ProTable/interface";
-import { CirclePlus, Delete } from "@element-plus/icons-vue";
+import { Delete } from "@element-plus/icons-vue";
 import { getArticleLabelList, deleteArticleLabel, addArticleLabel } from "@/api/modules/article";
 import dayjs from "dayjs";
 
@@ -102,13 +104,13 @@ const deleteAccount = async (params: Article.ResArticleList) => {
   proTable.value?.getTableList();
 };
 
-// 批量删除标签信息
-const batchDelete = async (ids: string[]) => {
-  console.log(ids);
-  await useHandleData(deleteArticleLabel, 1, "删除所选标签信息");
-  proTable.value?.clearSelection();
-  proTable.value?.getTableList();
-};
+// // 批量删除标签信息
+// const batchDelete = async (ids: string[]) => {
+//   console.log(ids);
+//   await useHandleData(deleteArticleLabel, 1, "删除所选标签信息");
+//   proTable.value?.clearSelection();
+//   proTable.value?.getTableList();
+// };
 
 const drawerRef = ref<InstanceType<typeof ArticleLabelDrawer> | null>(null);
 const openDrawer = (title: string, row: Partial<Article.ResArticleList> = {}) => {

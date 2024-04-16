@@ -9,11 +9,8 @@
       @darg-sort="sortTable"
     >
       <!-- 表格 header 按钮 -->
-      <template #tableHeader="scope">
+      <template>
         <el-button v-auth="'add'" type="primary" :icon="CirclePlus" @click="openDrawer('新增')">新增问答</el-button>
-        <el-button type="danger" :icon="Delete" plain :disabled="!scope.isSelected" @click="batchDelete(scope.selectedListIds)">
-          批量删除问答
-        </el-button>
       </template>
       <!-- 表格操作 -->
       <template #operation="scope">
@@ -92,12 +89,12 @@ const deleteAccount = async (params: QuestionAnswer.ResQuestionAnswerList) => {
 };
 
 // 批量删除问答信息
-const batchDelete = async (ids: string[]) => {
-  console.log(ids);
-  await useHandleData(deleteQuestionAnswer, 1, "删除所选问答信息");
-  proTable.value?.clearSelection();
-  proTable.value?.getTableList();
-};
+// const batchDelete = async (ids: string[]) => {
+//   console.log(ids);
+//   await useHandleData(deleteQuestionAnswer, 1, "删除所选问答信息");
+//   proTable.value?.clearSelection();
+//   proTable.value?.getTableList();
+// };
 
 const drawerRef = ref<InstanceType<typeof QuestionAnswerDrawer> | null>(null);
 const openDrawer = (title: string, row: Partial<QuestionAnswer.ResQuestionAnswerList> = {}) => {
