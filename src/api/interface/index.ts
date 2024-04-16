@@ -80,6 +80,8 @@ export namespace User {
 export namespace Role {
   export interface ReqRoleParams {
     name: string;
+    id: number;
+    desc: string;
   }
   export interface ResRoleList {
     id: string;
@@ -87,7 +89,24 @@ export namespace Role {
     status: number;
     desc: string;
     createTime: string;
-    permissions: [];
+    permissions: object[];
+  }
+}
+
+export namespace Permission {
+  export interface ReqPermissionParams {
+    name: string;
+    id: number;
+    desc: string;
+  }
+  export interface ResPermissionList {
+    id: number;
+    name: string;
+    desc: string;
+    menu: {
+      id: number;
+      name: string;
+    };
   }
 }
 
