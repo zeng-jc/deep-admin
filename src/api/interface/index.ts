@@ -236,3 +236,17 @@ export namespace MomentLabel {
     };
   }
 }
+
+export namespace QuestionAnswer {
+  export interface ReqQuestionAnswerParams extends ReqPage {
+    id: number;
+    title: string;
+  }
+  export interface ResQuestionAnswerList {
+    id: number;
+    content: string;
+    userId: number;
+    createTime: string;
+    user: User.ResUserList;
+  }
+}
