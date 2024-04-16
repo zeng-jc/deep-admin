@@ -9,7 +9,7 @@
       :model="drawerProps.row"
       :hide-required-asterisk="drawerProps.isView"
     >
-      <el-form-item label="用户头像" prop="avatar">
+      <el-form-item label="用户头像" prop="avatar" v-if="drawerProps.title !== '新增'">
         <UploadImg
           v-model:image-url="drawerProps.row!.avatar"
           width="135px"

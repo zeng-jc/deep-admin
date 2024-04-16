@@ -9,11 +9,12 @@
       @darg-sort="sortTable"
     >
       <!-- 表格 header 按钮 -->
-      <template>
+      <template #tableHeader>
         <el-button v-auth="'add'" type="primary" :icon="CirclePlus" @click="openDrawer('新增')">新增问答</el-button>
       </template>
       <!-- 表格操作 -->
       <template #operation="scope">
+        <el-button type="primary" link :icon="View" @click="openDrawer('查看', scope.row)">查看</el-button>
         <el-button type="primary" link :icon="Delete" @click="deleteAccount(scope.row)">删除</el-button>
       </template>
     </ProTable>
@@ -31,7 +32,7 @@ import ProTable from "@/components/ProTable/index.vue";
 import ImportExcel from "@/components/ImportExcel/index.vue";
 import QuestionAnswerDrawer from "@/views/questionAnswer/components/QuestionAnswerDrawer.vue";
 import { ProTableInstance, ColumnProps } from "@/components/ProTable/interface";
-import { CirclePlus, Delete } from "@element-plus/icons-vue";
+import { CirclePlus, Delete, View } from "@element-plus/icons-vue";
 import { getQuestionAnswerList, createQuestion, deleteQuestionAnswer } from "@/api/modules/questionAnswer";
 import dayjs from "dayjs";
 
@@ -62,7 +63,7 @@ const columns = reactive<ColumnProps<QuestionAnswer.ResQuestionAnswerList>[]>([
   { type: "selection", fixed: "left", width: 70 },
   { type: "sort", label: "Sort", width: 80 },
   { prop: "content", label: "问答内容", search: { el: "input", tooltip: "请输入问答内容" } },
-  { prop: "username", label: "问答发布人", render: ({ row }) => <div>{row.user.username}</div> },
+  { prop: "username", label: "问题发布人", render: ({ row }) => <div>{row.user.username}</div> },
   { prop: "viewCount", label: "问答浏览量", width: 120 },
   {
     prop: "createTime",
