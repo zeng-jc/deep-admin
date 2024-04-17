@@ -102,11 +102,11 @@ const acceptParams = (params: DrawerProps) => {
 const ruleFormRef = ref<FormInstance>();
 const handleSubmit = () => {
   const fd = new FormData();
-  drawerProps.value.row!.images?.forEach(item => {
-    fd.append("images", item.raw as File);
+  (drawerProps.value.row!.images as unknown as { raw: File }[])?.forEach(item => {
+    fd.append("images", item.raw);
   });
-  fd.append("content", drawerProps.value.row.content);
-  drawerProps.value.row.labels?.split(",")?.forEach(item => {
+  drawerProps.value.row.content && fd.append("content", drawerProps.value.row.content);
+  (drawerProps.value.row.labels as unknown as string)?.split(",")?.forEach(item => {
     fd.append("labels", item);
   });
   ruleFormRef.value!.validate(async valid => {

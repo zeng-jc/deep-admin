@@ -62,8 +62,8 @@ const getTableList = (params: any) => {
   newParams.createTime && (newParams.startTime = newParams.createTime[0]);
   newParams.createTime && (newParams.endTime = newParams.createTime[1]);
   delete newParams.createTime;
-  newParams.pagenum = 1;
-  newParams.pagesize = 10;
+  newParams.pagenum ?? (newParams.pagenum = 1);
+  newParams.pagesize ?? (newParams.pagesize = 10);
   return getMomentCommentList(newParams);
 };
 
