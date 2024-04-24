@@ -9,19 +9,15 @@
       :model="drawerProps.row"
       :hide-required-asterisk="drawerProps.isView"
     >
-      <el-form-item label="角色名" prop="name">
-        <el-input v-model="drawerProps.row!.name" placeholder="角色名" clearable></el-input>
-      </el-form-item>
-      <el-form-item label="权限" prop="desc" v-if="drawerProps.title === '新增'">
-        <el-input v-model="drawerProps.row!.desc" placeholder="角色描述" clearable></el-input>
-      </el-form-item>
-      <el-form-item label="角色描述" prop="desc" v-else>
-        <el-input v-model="drawerProps.row!.desc" placeholder="角色描述" clearable></el-input>
-      </el-form-item>
-      <el-form-item label="角色权限" prop="desc" v-if="drawerProps.title === '查看'">
-        <el-tag type="primary" v-for="permission in drawerProps.row!.permissions" :key="permission.id" style="margin-right: 6px">
-          {{ permission.name }}
-        </el-tag>
+      <el-form-item label="公告内容" prop="content">
+        <el-input
+          maxlength="800"
+          :autosize="{ minRows: 8, maxRows: 12 }"
+          type="textarea"
+          clearable
+          v-model="drawerProps.row!.content"
+          placeholder="公告内容"
+        ></el-input>
       </el-form-item>
     </el-form>
     <template #footer>
@@ -31,13 +27,13 @@
   </el-drawer>
 </template>
 
-<script setup lang="ts" name="MenuDrawer">
+<script setup lang="ts" name="AnnouncementDrawer">
 import { ref, reactive } from "vue";
 import { ElMessage, FormInstance } from "element-plus";
 import { Role } from "@/api/interface";
 
 const rules = reactive({
-  name: [{ required: true, message: "请输入角色名" }]
+  name: [{ required: true, message: "请输入公告名" }]
 });
 
 interface DrawerProps {
@@ -68,8 +64,7 @@ const handleSubmit = () => {
     if (!valid) return;
     try {
       await drawerProps.value.api!(drawerProps.value.row);
-      // ElMessage.success({ message: `${drawerProps.value.title}菜单成功！` });
-      ElMessage.success({ message: `权限分配成功！` });
+      ElMessage.success({ message: `公告发布成功！` });
       drawerProps.value.getTableList!();
       drawerVisible.value = false;
     } catch (error) {

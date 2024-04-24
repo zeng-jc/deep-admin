@@ -55,7 +55,7 @@ const columns: ColumnProps[] = [
 ];
 
 const drawerRef = ref<InstanceType<typeof MenuDrawer> | null>(null);
-const openDrawer = (title: string, row: Partial<User.ResUserList> = {}) => {
+const openDrawer = (title: string, row = {}) => {
   const params = {
     title,
     isView: title === "查看",

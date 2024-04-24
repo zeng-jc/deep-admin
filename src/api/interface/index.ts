@@ -269,3 +269,16 @@ export namespace QuestionAnswer {
     user: User.ResUserList;
   }
 }
+
+export namespace Announcement {
+  export interface ReqAnnouncementParams extends ReqPage {
+    id: number;
+    content: string;
+  }
+  export interface ResAnnouncementList {
+    id: number;
+    content: string;
+    userId: number;
+    createTime: string;
+  }
+}

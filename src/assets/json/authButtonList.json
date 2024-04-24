@@ -12,7 +12,8 @@
     "role": ["add", "delete", "batchAdd", "export", "batchDelete", "status"],
     "permission": ["add", "delete", "batchAdd", "export", "batchDelete", "status"],
     "menu": ["add", "delete", "batchAdd", "export", "batchDelete", "status"],
-    "authButton": ["add", "edit", "delete", "import", "export"]
+    "authButton": ["add", "edit", "delete", "import", "export"],
+    "announcement": ["add", "edit", "delete", "import", "export"]
   },
   "msg": "成功"
 }
